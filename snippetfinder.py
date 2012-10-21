@@ -1,4 +1,5 @@
 import re
+from optparse import OptionParser
 
 """
 highlight_doc
@@ -19,7 +20,7 @@ def highlight_doc(doc, query):
     #sanity check on the query
 
     #split the doc and query
-    docarray = re.split(' ', doc)
+    docarray = re.split('.', doc)
     queryarray = re.split(' ', query)
     counter = 0
     #according to stats, an average word size is about 5 characters, and so if we want 140, 18 words is the range we want. Choose 17 to be on the safe side
@@ -62,8 +63,14 @@ def highlight_doc(doc, query):
         snippet = snippetlist[0]
     return snippet
 
+def main(args):
+    description = "Find a useful snippet!"
+    usage = '%prog <PARAGRAPH> <QUERY>'
+    parser = OptionParser()
+    highlight_doc(args)
+
+if __name__ == '__main__':
+    exit(main(sys.argv[1:]))
+
+
 #TEST CASESSSSSSS
-
-
-
-
